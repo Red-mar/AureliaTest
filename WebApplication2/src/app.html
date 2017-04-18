@@ -1,28 +1,21 @@
 <template>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <require from="./styles.css"></require>
 
-  <input value.bind="hello.firstName" />
-  <input value.bind="hello.lastName" />
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <i class="fa fa-user"></i>
+        <span>Contacts</span>
+      </a>
+    </div>
+  </nav>
 
-   <button click.trigger="sayHello()">Say Hello</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">Contact List Placeholder</div>
+      <router-view class="col-md-8"></router-view>
+    </div>
+  </div>
 
-
-  <h1>${message}</h1>
-  <p>${hello.firstName}</p>
-  <br />
-  <h1>${heading}</h1>
-  <form submit.trigger="addTodo()">
-    <input type="text" value.bind="todoDescription"/>
-    <button type="submit">Add Todo</button>
-  </form>
-
-  <ul>
-    <li repeat.for="todo of todos">
-      <input type="checkbox" checked.bind="todo.done"/>
-      <span css="text-decoration: ${todo.done ? 'line-through' : 'none'}">
-        ${todo.description}
-        ${todo.done}
-      </span>
-      <button click.trigger="removeTodo(todo)">Remove</button>
-    </li>
-  </ul>
 </template>

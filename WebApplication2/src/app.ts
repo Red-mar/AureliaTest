@@ -1,30 +1,15 @@
-import { Hello } from './hello';
-import { Todo } from './todo';
 import { Router, RouterConfiguration } from 'aurelia-router';
 
 export class App {
-    heading = 'Todos';
-    todos: Todo[] = [];
-    todoDescription = '';
-    message = 'Hello World!';
+    router: Router;
 
-    hello: Hello = new Hello();
+    configureRouter(config: RouterConfiguration, router: Router) {
+        config.title = 'Contacs';
+        config.map([
+            { route: '', moduleId: 'no-selection', title: 'Select' },
+            { route: 'contacts/:id', moduleId: 'contact-detail', name:'contacts' }
+        ]);
 
-    addTodo() {
-        if (this.todoDescription) {
-            this.todos.push(new Todo(this.todoDescription));
-            this.todoDescription = '';
-        }
-    }
-
-    removeTodo(todo) {
-        let index = this.todos.indexOf(todo);
-        if (index !== -1) {
-            this.todos.splice(index, 1);
-        }
-    }
-
-    sayHello() {
-        this.hello.sayHello();
+        this.router = router;
     }
 }

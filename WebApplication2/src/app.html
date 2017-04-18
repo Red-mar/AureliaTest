@@ -1,0 +1,28 @@
+<template>
+
+  <input value.bind="hello.firstName" />
+  <input value.bind="hello.lastName" />
+
+   <button click.trigger="sayHello()">Say Hello</button>
+
+
+  <h1>${message}</h1>
+  <p>${hello.firstName}</p>
+  <br />
+  <h1>${heading}</h1>
+  <form submit.trigger="addTodo()">
+    <input type="text" value.bind="todoDescription"/>
+    <button type="submit">Add Todo</button>
+  </form>
+
+  <ul>
+    <li repeat.for="todo of todos">
+      <input type="checkbox" checked.bind="todo.done"/>
+      <span css="text-decoration: ${todo.done ? 'line-through' : 'none'}">
+        ${todo.description}
+        ${todo.done}
+      </span>
+      <button click.trigger="removeTodo(todo)">Remove</button>
+    </li>
+  </ul>
+</template>

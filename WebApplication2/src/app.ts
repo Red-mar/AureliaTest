@@ -1,25 +1,20 @@
 import { Router, RouterConfiguration } from 'aurelia-router';
+import { inject } from 'aurelia-framework';
+import { WebAPI } from './web-api';
 
+@inject(WebAPI)
 export class App {
-
     router: Router;
-    constructor() {
-        
-    }
+
+    constructor(public api: WebAPI) { }
 
     configureRouter(config: RouterConfiguration, router: Router) {
-
         config.title = 'Contacts';
         config.map([
-            { route: ['', 'home'], moduleId: 'no-selection', title: 'Select'},
-            { route: 'contacts/:id', moduleId: 'contact-detail', name: 'contacts'}
+            { route: '', moduleId: 'no-selection', title: 'Select' },
+            { route: 'contacts/:id', moduleId: 'contact-detail', name: 'contacts' }
         ]);
-        config.mapUnknownRoutes('./app');
-        
 
         this.router = router;
-
-        console.log(router);
-        console.log(config);
     }
 }

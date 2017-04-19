@@ -2,4 +2,9 @@
   <div class="no-selection text-center">
     <h2>${message}</h2>
   </div>
+
+  <div class="button-bar">
+    <button class="btn btn-success" click.delegate="save()" disabled.bind="!canSave">Make New Contact?</button>
+  </div>
+
 </template>

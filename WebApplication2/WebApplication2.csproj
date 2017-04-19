@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="src\styling\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

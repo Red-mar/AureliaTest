@@ -2,7 +2,7 @@
 import { inject } from 'aurelia-framework';
 
 import { EventAggregator } from 'aurelia-event-aggregator';
-import { ContactUpdated, ContactViewed } from './message';
+import { ContactUpdated, ContactViewed, TestEvent } from './message';
 
 @inject(WebAPI, EventAggregator)
 export class ContactList {
@@ -10,11 +10,17 @@ export class ContactList {
     selectedId = 0;
 
     constructor(private api: WebAPI, private ea: EventAggregator) {
+        ea.subscribe(TestEvent, msg => alert(msg.message));
         ea.subscribe(ContactViewed, msg => this.select(msg.contact));
         ea.subscribe(ContactUpdated, msg => {
+
+            this.api.getContactList().then(contacts => this.contacts = contacts);
+
             let id = msg.contact.id;
             let found = this.contacts.find(x => x.id == id);
-            Object.assign(found, msg.contact);
+
+            // Found is undefined ?
+            //Object.assign(found, msg.contact);
         });
     }
 

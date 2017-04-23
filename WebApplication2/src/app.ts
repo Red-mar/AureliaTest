@@ -2,12 +2,16 @@ import { Router, RouterConfiguration } from 'aurelia-router';
 import { inject } from 'aurelia-framework';
 import { WebAPI } from './web-api';
 
-@inject(WebAPI)
+import { HttpClient } from 'aurelia-fetch-client';
+
+@inject(WebAPI, HttpClient)
 export class App {
     router: Router;
     home = true;
 
-    constructor(public api: WebAPI) { }
+    constructor(public api: WebAPI, private http: HttpClient) {
+        this.configHttp();
+    }
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.title = 'Contacts';
@@ -20,6 +24,32 @@ export class App {
         this.router = router;
     }
 
+    configHttp(): void {
+        this.http.configure(config => {
+            config
+                .withBaseUrl('api/values/')
+                .withDefaults({
+                    method: "POST",
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'Fetch'
+                    }
+                })
+                .withInterceptor({
+                    request(request) {
+                        console.log(`Requesting ${request.method} ${request.url}`);
+                        return request;
+                    },
+                    response(response: Response) {
+                        console.log(`Received ${response.status} ${response.url}`);
+                        return response;
+                    }
+                });
+        });
+    }
+
+    // ???
     select() {
         if (this.home) {
             this.home = false;

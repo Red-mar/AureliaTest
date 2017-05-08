@@ -1,0 +1,42 @@
+﻿<template>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      Event
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li repeat.for="event of events"><a href="#">${event.Naam}</a></li>
+    </ul>
+  </div>
+
+  <br />
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      Plek
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li repeat.for="plek of plekken"><a href="#">${plek.Naam}</a></li>
+    </ul>
+  </div>
+
+  <br />
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      Accounts
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li repeat.for="account of accounts"><a href="#">${account.Naam}</a></li>
+    </ul>
+  </div>
+
+  <br />
+
+  <form>
+    <button type="submit" class="btn btn-default">Reserveer</button>
+  </form>
+
+</template>

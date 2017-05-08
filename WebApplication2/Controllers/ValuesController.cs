@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Database;
+using WebApplication2.Model;
 
 namespace WebApplication2.Controllers
 {
@@ -25,6 +27,8 @@ namespace WebApplication2.Controllers
   [Route("api/[controller]/[action]")]
     public class ValuesController : Controller
     {
+
+    IBeheerRepository repo = new BeheerContext();
     private static readonly List<string> values = new List<string>(new[] { "value1", "value2" });
     private static readonly List<int> numbers = new List<int>(new[] { 1337, 42, 9001, 80085 });
 
@@ -109,6 +113,11 @@ namespace WebApplication2.Controllers
       lastName.Add(contact.lastName);
       email.Add(contact.email);
       phoneNumber.Add(contact.phoneNumber);
+    }
+
+    public Account GetAccount([FromBody] int id)
+    {
+      return repo.GetAccountById(id);
     }
   }
 }

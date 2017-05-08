@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <require from="bootstrap/css/bootstrap.css"></require>
   <require from="./style.css"></require>
   <require from="./contact-list"></require>
@@ -8,12 +8,17 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
         <i class="fa fa-user"></i>
-        <span>Contacts</span>
+        <span>4Events</span>
       </a>
       </div>
     <ul class="nav navbar-nav">
-      <li><a href="#">Home</a></li>
-      <li><a href="#/Test">Test</a></li>
+      <li><a href="#/login">Login</a></li>
+      <li><a href="#/media">Media</a></li>
+      <li><a href="#/beheer">Beheer</a></li>
+      <li><a href="#/beheerevent">Beheerevent</a></li>
+      <li><a href="#/reservering">Reservering</a></li>
+      <li><a href="#/verhuur">Verhuur</a></li>
+      <li><a href="#/toegangscontrole">Toegangscontrole</a></li>
     </ul>
     </div>
   </nav>
@@ -22,8 +27,8 @@
 
   <div class="container">
     <div class="row">
-      <contact-list class="col-md-4"></contact-list>
-      <router-view class="col-md-8"></router-view>
+      <!--<contact-list class="col-md-4"></contact-list>-->
+      <router-view class="col-md-12"></router-view>
     </div>
   </div>
 

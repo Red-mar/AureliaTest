@@ -1,6 +1,7 @@
 ﻿import { inject } from 'aurelia-framework';
 import { WebAPI } from './web-api';
 import { areEqual } from './utility';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { ContactUpdated, ContactViewed } from './message';
@@ -11,13 +12,13 @@ interface Contact {
     email: string;
 }
 
-@inject(WebAPI, EventAggregator)
+@inject(WebAPI, EventAggregator, HttpClient, json)
 export class ContactDetail {
     routeConfig;
     contact: Contact;
     originalContact: Contact;
 
-    constructor(private api: WebAPI, private ea: EventAggregator) { }
+    constructor(private api: WebAPI, private ea: EventAggregator, private http: HttpClient) { }
 
     activate(params, routeConfig) {
         this.routeConfig = routeConfig;

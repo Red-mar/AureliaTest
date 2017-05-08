@@ -11,6 +11,17 @@ class Contact {
     phoneNumber: string;
 }
 
+class Account {
+    ID: number;
+    Naam: string;
+    Plaats: string;
+    Straat: string;
+    Huisnummer: number;
+    Postcode: string;
+    Email: string;
+    Password: string;
+}
+
 @inject(EventAggregator, HttpClient, json)
 export class Test {
     message = 'This is a test page';
@@ -40,7 +51,7 @@ export class Test {
         });
 
         let x = await data.json();
-        this.message = x.firstName + " " + x.lastName + " " + x.email + " " + x.phoneNumber; 
+        this.message = x.firstName + " " + x.lastName + " " + x.email + " " + x.phoneNumber;
     }
 
     async addContact(firstName: string, lastName: string, email: string, phoneNumber: string) {
@@ -54,6 +65,15 @@ export class Test {
             body: json(this.c)
         });
         this.activate();
+    }
+
+    async getAccount() {
+        let data: Response = await this.http.fetch('GetAccount', {
+            body: json('2')
+        });
+
+        let x = await data.json();
+        this.message = x.naam + x.email;
     }
 
     /*
